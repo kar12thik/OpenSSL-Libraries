@@ -129,7 +129,7 @@ void FF1_encrypt(const unsigned int *in, unsigned int *out, AES_KEY *aes_enc_ctx
   const int b = ceil2(temp, 3);
   const int d = 4 * ceil2(b, 2) + 4;
 
-  int pad = ((tweaklen - b - 1) % 16 + 16) % 16;
+  int pad = ((-tweaklen - b - 1) % 16 + 16) % 16;
   int Qlen = tweaklen + pad + 1 + b;
   unsigned char P[16];
   unsigned char *Q = (unsigned char *)OPENSSL_malloc(Qlen), *Bytes = (unsigned char *)OPENSSL_malloc(b);
@@ -288,7 +288,7 @@ void FF1_decrypt(const unsigned int *in, unsigned int *out, AES_KEY *aes_enc_ctx
   const int b = ceil2(temp, 3);
   const int d = 4 * ceil2(b, 2) + 4;
 
-  int pad = ((tweaklen - b - 1) % 16 + 16) % 16;
+  int pad = ((-tweaklen - b - 1) % 16 + 16) % 16;
   int Qlen = tweaklen + pad + 1 + b;
   unsigned char P[16];
   unsigned char *Q = (unsigned char *)OPENSSL_malloc(Qlen), *Bytes = (unsigned char *)OPENSSL_malloc(b);
